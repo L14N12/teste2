@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicletes de Amor - Nosso dia!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chilanka', cursive, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9ecb 0%, #ff6b9d 50%, #ff4081 100%);
+            color: #9c27b0;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 8px dotted #ff4081;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            color: #ff4081;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px #ff9ecb;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .heart {
+            color: #ff4081;
+            font-size: 2.2rem;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .header-image {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            background: #ff4081;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid #ff9ecb;
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
+            overflow: hidden;
+        }
+        
+        .header-image i {
+            font-size: 80px;
+            color: white;
+        }
+        
+        .bubble-gum {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .gum {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .gum:hover {
+            transform: translateY(-15px) rotate(15deg);
+        }
+        
+        .gum::after {
+            content: "";
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 15%;
+            height: 15%;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+        }
+        
+        .message {
+            background: linear-gradient(to right, #ffefef, #fff9e6);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border-left: 8px solid #ff4081;
+            text-align: left;
+            color: #ff4081;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .message::before {
+            content: "“";
+            font-size: 80px;
+            color: #ff9ecb;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-family: Arial;
+        }
+        
+        button {
+            background: linear-gradient(to right, #ff4081, #ff6b9d);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.6);
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        button:hover::after {
+            animation: shine 1.5s infinite;
+        }
+        
+        @keyframes shine {
+            0% { opacity: 0; transform: rotate(30deg) translate(-50%, -50%); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: rotate(30deg) translate(100%, 100%); }
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #ff9ecb;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #ffefef;
+            border-radius: 15px;
+            border: 3px dashed #ff4081;
+            color: #ff4081;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .poem {
+            font-style: italic;
+            line-height: 1.8;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .gum-container {
+            position: relative;
+            margin: 30px auto;
+            width: 100%;
+            height: 100px;
+        }
+        
+        .floating-gum {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(20deg); }
+        }
+        
+        .counter {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: #ff4081;
+            font-weight: bold;
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 10px solid #ff9ecb;
+            border-radius: 10px;
+            background: #ffe6f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        .photo-placeholder {
+            font-size: 4rem;
+            color: #ff9ecb;
+        }
+        
+        .memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 25px auto;
+            max-width: 400px;
+        }
+        
+        .memory-card {
+            height: 80px;
+            background: #ff9ecb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: transparent;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .memory-card .card-back {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+.memory-card.flipped .card-back {
+    opacity: 0;
+}
+.memory-card .card-content {
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.memory-card.flipped .card-content {
+    opacity: 1;
+    color: #fff;
+        }
+        
+        .memory-card.flipped {
+            background: #ff4081;
+            transform: rotateY(180deg);
+        }
+        
+        .memory-card.flipped .card-content {
+            opacity: 1;
+        }
+        
+        .love-meter {
+            width: 80%;
+            height: 30px;
+            background: #ffe6f2;
+            border-radius: 15px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 3px solid #ff9ecb;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #ff9ecb, #ff4081);
+            border-radius: 12px;
+            animation: fill 2s forwards;
+        }
+        
+        @keyframes fill {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Responsividade melhorada */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .header-image i {
+                font-size: 60px;
+            }
+            
+            .gum {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .memory-game {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 300px;
+            }
+            
+            .memory-card {
+                height: 70px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .memory-game {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 200px;
+            }
+            
+            button {
+                padding: 12px 24px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bolhas de chiclete flutuantes -->
+    <div class="gum-container">
+        <div class="floating-gum" style="background-color: #ff4081; left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-gum" style="background-color: #9c27b0; left: 30%; animation-delay: 1s;"></div>
+        <div class="floating-gum" style="background-color: #3f51b5; left: 50%; animation-delay: 2s;"></div>
+        <div class="floating-gum" style="background-color: #009688; left: 70%; animation-delay: 3s;"></div>
+        <div class="floating-gum" style="background-color: #ff9800; left: 90%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="container">
+        <div class="header-image">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <h1>Chicletes de Amor <span class="heart">❤</span></h1>
+        
+        <p>Para a minha namorada mais doce que todos os chicletes do mundo!</p>
+        
+        <div class="bubble-gum">
+            <div class="gum" style="background-color: #ff4081;">A</div>
+            <div class="gum" style="background-color: #9c27b0;">M</div>
+            <div class="gum" style="background-color: #3f51b5;">O</div>
+            <div class="gum" style="background-color: #009688;">R</div>
+            <div class="gum" style="background-color: #ff9800;">❤</div>
+        </div>
+        
+        
+        
+        <div class="message">
+            <p>Oi, minha vida! Nosso amor é como um chiclete:</p>
+            <p>No começo é só uma coisinha pequena, mas com o tempo vai ficando cada vez mais doce e maior!</p>
+            <p>E mesmo quando a gente acha que já perdeu o sabor, sempre descobrimos que ainda tem muito mais diversão pela frente!</p>
+        </div>
+        
+        <div class="photo-frame">
+    <img src="foto.jpg" alt="Nossa foto" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+</div>
+        </div>
+        
+        <div class="love-meter">
+            <div class="meter-fill"></div>
+        </div>
+        <p>Nosso amor: Infinito!</p>
+        
+        <button onclick="showMessage()"><i class="fas fa-gift"></i> Clique para uma surpresa!</button>
+        
+        <div id="hiddenMessage" class="hidden-message">
+            <p class="poem">
+                "Meu amor por você é como chiclete:<br>
+                Doce, colorido e sempre presente.<br>
+                Mesmo nos dias mais difíceis,<br>
+                Você sempre traz a doçura que preciso!"
+            </p>
+            <p>Te amo mais que todos os chicletes do mundo! 💖</p>
+        </div>
+        
+        <h3>Jogo da Memória do Amor</h3>
+        <div class="memory-game" id="memoryGame">
+            <!-- As cartas serão geradas via JavaScript -->
+        </div>
+        
+        <div class="footer">
+            <p>Feito com ❤ especialmente para você!</p>
+            <p>Feliz Dia dos Namorados!</p>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis globais
+        let popCount = 0;
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let audioContext;
+        
+        // Emojis para o jogo da memória (pares)
+        const emojis = ['❤', '😘', '💋', '💖', '😍', '💑', '🌹', '🎁'];
+        
+        // Inicializar o jogo quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            initMemoryGame();
+            initGumBubbles();
+            initLoveMeter();
+            
+            // Inicializar AudioContext apenas quando necessário
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (e) {
+                console.log('Web Audio API não é suportada neste navegador');
+            }
+        });
+        
+        // Inicializar o jogo da memória
+        function initMemoryGame() {
+            const memoryGame = document.getElementById('memoryGame');
+            memoryGame.innerHTML = '';
+            
+            // Duplicar e embaralhar os emojis
+            const gameEmojis = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+            
+            // Criar as cartas
+            gameEmojis.forEach(emoji => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.innerHTML =  `<div class="card-back">❓</div>
+                <div class="card-content">${emoji}</div>`;
+                card.addEventListener('click', () => flipCard(card, emoji));
+                memoryGame.appendChild(card);
+            });
+        }
+        
+        // Inicializar bolhas de chiclete
+        function initGumBubbles() {
+            const gums = document.querySelectorAll('.gum');
+            gums.forEach(gum => {
+                gum.addEventListener('click', () => {
+                    popGum(gum);
+                });
+            });
+        }
+        
+        // Inicializar medidor de amor
+        function initLoveMeter() {
+            const loveMeter = document.querySelector('.meter-fill');
+            loveMeter.style.animation = 'none';
+            setTimeout(() => {
+                loveMeter.style.animation = 'fill 2s forwards';
+            }, 100);
+        }
+        
+        // Virar carta no jogo da memória
+        function flipCard(card, emoji) {
+            // Não fazer nada se a carta já estiver virada ou se já tiverem duas cartas viradas
+            if (card.classList.contains('flipped') || flippedCards.length >= 2) {
+                return;
+            }
+            
+            // Virar a carta
+            card.classList.add('flipped');
+            flippedCards.push({card, emoji});
+            
+            // Se duas cartas foram viradas, verificar se são iguais
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 500);
+            }
+        }
+        
+        // Verificar se as cartas viradas formam um par
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.emoji === card2.emoji) {
+                // Par encontrado - manter as cartas viradas
+                matchedPairs++;
+                
+                // Verificar se o jogo terminou
+                if (matchedPairs === emojis.length) {
+                    setTimeout(() => {
+                        alert('Parabéns! Você completou o jogo da memória! ❤');
+                        initMemoryGame();
+                        matchedPairs = 0;
+                    }, 500);
+                }
+            } else {
+                // Virar as cartas de volta
+                card1.card.classList.remove('flipped');
+                card2.card.classList.remove('flipped');
+            }
+            
+            // Limpar o array de cartas viradas
+            flippedCards = [];
+        }
+        
+        // Mostrar mensagem especial
+        function showMessage() {
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            const button = document.querySelector('button');
+            
+            if (hiddenMessage.style.display === 'none' || hiddenMessage.style.display === '') {
+                hiddenMessage.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-gift"></i> Que surpresa doce!';
+                button.style.background = 'linear-gradient(to right, #9c27b0, #e91e63)';
+                
+                // Criar efeito de confete
+                createConfetti();
+                
+                // Tocar som de estouro de bolha
+                playPopSound();
+            } else {
+                hiddenMessage.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-gift"></i> Clique para ver de novo!';
+                button.style.background = 'linear-gradient(to right, #ff4081, #ff6b9d)';
+            }
+        }
+        
+        // Estourar chiclete
+        function popGum(element) {
+            element.style.transform = 'scale(1.5)';
+            element.style.opacity = '0';
+            playPopSound();
+            
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+                element.style.opacity = '1';
+            }, 300);
+            
+            popCount++;
+            document.getElementById('popCounter').textContent = 'Chicletes estourados: ' + popCount;
+        }
+        
+        // Tocar som de estouro
+        function playPopSound() {
+            if (!audioContext) return;
+            
+            try {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 523.25;
+                gainNode.gain.value = 0.3;
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.2);
+                
+                setTimeout(() => {
+                    oscillator.stop();
+                }, 200);
+            } catch (e) {
+                console.log('Erro ao reproduzir som');
+            }
+        }
+        
+        // Criar efeito de confete
+        function createConfetti() {
+            const confettiCount = 30;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '15px';
+                    confetti.style.height = '15px';
+                    confetti.style.backgroundColor = ['#ff4081', '#9c27b0', '#3f51b5', '#009688', '#ff9800'][Math.floor(Math.random() * 5)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-30px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.opacity = '0.8';
+                    document.body.appendChild(confetti);
+                    
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                        { transform: 'translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)', opacity: 0 }
+                    ], {
+                        duration: 2000 + Math.random() * 3000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                    });
+                    
+                    animation.onfinish = () => {
+                        confetti.remove();
+                    };
+                }, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
